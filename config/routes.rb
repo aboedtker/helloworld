@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :orders
+
   # get "page/index"
   get "/about" => "page#about"
   root 'page#index'
