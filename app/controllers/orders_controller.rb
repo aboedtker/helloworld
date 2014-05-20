@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-
+ before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
+   before_action :correct_user, only: [:edit, :update, :destroy]
   # GET /orders
   # GET /orders.json
   def index
@@ -14,7 +15,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
-    @order = Order.new
+    @order = current_user.orders.build
   end
 
   # GET /orders/1/edit
@@ -24,7 +25,7 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = Order.new(order_params)
+    @order = current_user.orders.build(order_params)
 
     respond_to do |format|
       if @order.save
@@ -65,6 +66,11 @@ class OrdersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_order
       @order = Order.find(params[:id])
+    end
+
+      def correct_user
+      @order = current_user.orders.find_by(id: params[:id])
+      redirect_to orders_path, notice: "Not authorized to edit this order" if @order.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -24,10 +24,16 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/">Home</a></li>
-            <li><a href="/orders/new" target="ext">Book Now</a></li>
-             <li><a href="/about" target="ext">About</a></li>
-            <li><a href="/location" target="ext">Find Now</a></li>
+           <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "Book Now", new_order_path %></li>
+            <li><%= link_to "About", about_path %></li>
+            <li><%= link_to "Find Now", location_path %></li>
+             <% if user_signed_in? %>
+        <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to "Sign Up", new_user_registration_path %></li>
+        <li><%= link_to "Sign In", new_user_session_path %></li>
+      <% end %> 
           </ul>
         </div>
       </div>
@@ -38,6 +44,9 @@
 </div><!-- /.container -->
 
 <div class="container">
+   <% flash.each do |name, msg| %>
+    <%= content_tag(:div, msg, class: "alert alert-info") %>
+  <% end %>
 <%= yield %>
 </div>
 </body>
