@@ -13,6 +13,16 @@
     </div>
   <% end %>
 
+  <% if !user_signed_in? %>
+<div class="jumbotron">
+  <h1>Request the Truck</h1>
+ <p><img class="img-responsive" src=" http://m1.behance.net/rendition/modules/86579007/disp/b3770565b3f468854f9f7fe706e3dd97.png"/> 
+     </p>
+    <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary btn-lg" %>
+    <%= link_to "Sign In", new_user_session_path, class: "btn btn-primary btn-lg" %>
+  </p>
+</div>
+<% else %>
 <div class="jumbotron">
    <h1>Request the Truck</h1>
     <p><img class="img-responsive" src=" http://m1.behance.net/rendition/modules/86579007/disp/b3770565b3f468854f9f7fe706e3dd97.png"/> 
