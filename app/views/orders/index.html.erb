@@ -1,12 +1,15 @@
-<h1>Listing orders</h1>
+  <% if !user_signed_in? %>
+<div class="jumbotron">
+  <h1>To Request the Truck <b>please sign in!</b></h1>
+ <p><img class="img-responsive" src=" http://m1.behance.net/rendition/modules/86579007/disp/b3770565b3f468854f9f7fe706e3dd97.png"/> 
+     </p>
+    <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary btn-lg" %>
+    <%= link_to "Sign In", new_user_session_path, class: "btn btn-primary btn-lg" %>
+  </p>
+</div>
+<% else %>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<h1>Listing Orders</h1>
 
 <table class="table table-striped">
   <thead>
@@ -25,13 +28,13 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><%= order.name %></td>
-        <td><%= order.name %></td>
-        <td><%= order.name %></td>
-        <td><%= order.name %></td>
-        <td><%= order.name %></td>
-        <td><%= order.name %></td>
-        <td><%= order.name %></td>
+        <td><%= order.First_Name %></td>
+        <td><%= order.Last_Name %></td>
+        <td><%= order.Location %></td>
+        <td><%= order.Time %></td>
+        <td><%= order.Cuisine %></td>
+        <td><%= order.Email %></td>
+        <td><%= order.Additional_Comments %></td>
           <% if current_user == order.user %>
         <td><%= link_to 'Show', order %></td>
         <td><%= link_to 'Edit', edit_order_path(order) %></td>
@@ -44,4 +47,7 @@
 
 <br>
 
-<%= link_to 'New Order', new_order_path %>
+<% if user_signed_in? %>
+<%= link_to 'New Order', new_order_path, class: "btn btn-primary btn-lg" %>
+<% end %>
+<% end %>

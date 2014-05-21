@@ -1,19 +1,19 @@
 <%= form_for(@order, html: { class: "form-horizontal"} ) do |f| %>
   <% if @order.errors.any? %>
-  <div class="alert alert-danger alert-dismissable">
+    <div class="alert alert-danger alert-dismissable">
       <button class="close" aria-hidden="true" data-dismiss="alert" type="button">&times;</button>
-    <div id="error_explanation">
-      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <h4><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h4>
 
       <ul>
-      <% @order.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <% @order.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-<div class="jumbotron">
+<div class="jumbotron <%= description_error %> ">
    <h1>Request the Truck</h1>
     <p><img class="img-responsive" src=" http://m1.behance.net/rendition/modules/86579007/disp/b3770565b3f468854f9f7fe706e3dd97.png"/> 
      </p>
@@ -22,7 +22,7 @@
      <div class="col-sm-10"><p>
     <%= f.text_field :First_Name, class: "form-control" %>
   </p></div>
- <%= f.label :Last_Name, class: "control-label col-sm-2"%>
+   <%= f.label :Last_Name, class: "control-label col-sm-2"%>
      <div class="col-sm-10"><p>
     <%= f.text_field :Last_Name, class: "form-control" %>
     </p></div>

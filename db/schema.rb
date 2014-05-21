@@ -13,8 +13,21 @@
 
 ActiveRecord::Schema.define(version: 20140521171359) do
 
-# Could not dump table "orders" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "orders", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.string   "Location"
+    t.string   "Time"
+    t.string   "First_Name"
+    t.string   "Last_Name"
+    t.string   "Email"
+    t.string   "Cuisine"
+    t.string   "Additional_Comments"
+  end
+
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
