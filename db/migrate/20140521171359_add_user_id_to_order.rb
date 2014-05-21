@@ -5,9 +5,9 @@ class AddUserIdToOrder < ActiveRecord::Migration
     add_column :orders, :Location, :string
     add_column :orders, :Time, :string
     add_column :orders, :First_Name, :string
-    add_column :orders, :Last_Name, :String
+    add_column :orders, :Last_Name, :string
     add_column :orders, :Email, :string
     add_column :orders, :Cuisine, :string
-    add_column :orders, :Additional_Comments, :String
+    add_column :orders, :Additional_Comments, :string
   end
 end
